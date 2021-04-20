@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Head from "next/head";
+import { MainLayout } from "../components/MainLayout";
 
 export default function Index() {
   return (
-    <>
+    <MainLayout title={"Home Page"}>
       <h1>Next.JS!</h1>
       <p>
         <Link href="/about">
@@ -16,6 +18,6 @@ export default function Index() {
       </p>
 
       <p>Lorem ipsum isajja </p>
-    </>
+    </MainLayout>
   );
 }
