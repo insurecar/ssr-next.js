@@ -37,14 +37,9 @@ export default function Post({ post: serverPost }) {
   );
 }
 
-Post.getInitialProps = async ({ query, req }) => {
-  if (!req) {
-    return {
-      post: null,
-    };
-  }
+export const getServerSideProps = async ({ query, req }) => {
   const response = await axios(`http://localhost:4200/posts/${query.idPost}`);
   const post = await response.data;
 
-  return { post };
+  return { props: { post } };
 };
