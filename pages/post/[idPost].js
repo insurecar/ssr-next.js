@@ -19,14 +19,6 @@ export default function Post({ post: serverPost }) {
     if (!serverPost) load();
   }, []);
 
-  if (!post) {
-    return (
-      <MainLayout>
-        <p>Loading</p>
-      </MainLayout>
-    );
-  }
-
   return (
     <MainLayout>
       <h1>Post:{post.title}</h1>
