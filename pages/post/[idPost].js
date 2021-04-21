@@ -1,16 +1,23 @@
-import { useRouter } from "next/router";
-import Head from "next/head";
-import MainLayout from "../../components/MainLayout";
+import { MainLayout } from "../../components/MainLayout";
+import axios from "axios";
+import Link from "next/link";
 
-export default function Post() {
-  const router = useRouter();
-  console.log(router);
+export default function Post({ post }) {
+  console.log(post);
   return (
     <MainLayout>
-      <Head>
-        <title>Post</title>
-      </Head>
-      <h1>Post: {router.query.idPost}</h1>
+      <h1>Post:{post.title}</h1>
+      <p>{post.body}</p>
+      <hr />
+      <Link href="/posts">Back to all posts</Link>
     </MainLayout>
   );
 }
+
+Post.getInitialProps = async ({ query: { idPost } }) => {
+  console.log(idPost);
+  const response = await axios(`http://localhost:4200/posts/${idPost}`);
+  const post = await response.data;
+
+  return { post };
+};
